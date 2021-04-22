@@ -30,15 +30,15 @@ const passwordParams = () => {
 
     //ask what kind if characters in password
     const hasSpecialCharacters = confirm(`Click Ok to add special Characters`);
-    const hasnumberCharacters = confirm(`Click OK to confirm including numeric characters.`);
-    const haslowercaseCharacters = confirm(`Click OK to include lower case characters.`);
+    const hasNumberCharacters = confirm(`Click OK to confirm including numeric characters.`);
+    const hasLowercaseCharacters = confirm(`Click OK to include lower case characters.`);
     const hasUpperCaseCharacters = confirm(`Click OK to include Upper case characters.`);
 
     //confirm that user requested atlest one type of character
     if (
         hasSpecialCharacters === false &&
-         hasnumberCharacters === false &&
-          haslowercaseCharacters === false &&
+         hasNumberCharacters === false &&
+          hasLowercaseCharacters === false &&
            hasUpperCaseCharacters === false) {
                alert(`Choose atleast one type of character`);
                return;
@@ -47,13 +47,61 @@ const passwordParams = () => {
     let passwordOptions = {
         length:length,
         hasSpecialCharacters:hasSpecialCharacters,
-        hasnumberCharacters:hasnumberCharacters,
-        haslowercaseCharacters:haslowercaseCharacters,
+        hasNumberCharacters:hasNumberCharacters,
+        hasLowercaseCharacters:hasLowercaseCharacters,
         hasUpperCaseCharacters:hasUpperCaseCharacters
     };
     return passwordOptions;
         
 };
+
+//get random characters from arrays
+const getRandom =(array) => {
+    const randomIndex = Math.floor(Math.random()*array.length);
+    const randomElement = array[randomIndex];
+
+    return randomElement;
+};
+
+//generate password according to user input
+const generatePassword = () => {
+    const options = passwordParams;
+    const result = [];
+
+    let possibleCharacters = [];
+
+    let definiteCharacters = [];
+
+    if (options.hasSpecialCharacters){
+        possibleCharacters = possibleCharacters.concat(specialCharacters);
+        definiteCharacters.push(getRandom(specialCharacters));
+    };
+    if (options.hasNumberCharacters){
+        possibleCharacters = possibleCharacters.concat(numberCharacters);
+        definiteCharacters.push(getRandom(numberCharacters));
+    };
+    if (options.hasLowerCaseCharacters){
+        possibleCharacters = possibleCharacters.concat(lowercaseCharacters);
+        definiteCharacters.push(getRandom(lowerCaseCharacters));
+    };
+    if (options.uppercaseCharacters){
+        possibleCharacters = possibleCharacters.concat(uppercaseCharacters);
+        definiteCharacters.push(getRandom(uppercaseCharacters));
+    }
+
+    //takes password length and returns random characters into the empty array
+    for (var i = 0; i < possibleCharacters.length; i++) {
+        let possibleCharacters= getRandom(possibleCharacters);
+        result.push(possibleCharacters);
+    };
+    for (let i = 0; i < definiteCharacters.length; i++) {
+        result.push(definiteCharacters[i]);
+    };
+
+    return result.join('');
+}
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
