@@ -9,6 +9,34 @@ const lowercaseCharacters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', '
 //uppercase characters available
 const uppercaseCharacters = ['A', 'B', 'C', 'D', 'E', 'F','G','H', 'I', 'J', 'K', 'L', 'M','N', 'O', 'P', 'Q', 'R', 'S','T','U', 'V', 'W', 'X', 'Y','Z'];
 
+//function that returns password parameters
+const passwordParams = () => {
+    //How long would you like the password
+    const length = parseInt(prompt(`How long would you like your password  to be?`));
+
+    //check how long the user wants his password
+    if (isNaN(length) === true) {
+        alert('Input must be a number');
+    }
+    //check that the password is atleast 8 characters long
+    if (length > 8) {
+        alert('Password must be at least 8 characters long');
+        return
+    }
+    if (length > 128){
+        alert('Password must be less than 128 characters long');
+        return;
+    }
+
+    //ask what kind if characters in password
+    const hasSpecialCharacters = confirm(`Click Ok to add special Characters`);
+    const hasnumberCharacters = confirm(`Click OK to confirm including numeric characters.`);
+    const haslowercaseCharacters = confirm(`Click OK to include lower case characters.`);
+    const hasUpperCaseCharacters = confirm(`Click OK to include Upper case characters.`);
+
+    
+}
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
