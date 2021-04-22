@@ -34,8 +34,26 @@ const passwordParams = () => {
     const haslowercaseCharacters = confirm(`Click OK to include lower case characters.`);
     const hasUpperCaseCharacters = confirm(`Click OK to include Upper case characters.`);
 
-    
-}
+    //confirm that user requested atlest one type of character
+    if (
+        hasSpecialCharacters === false &&
+         hasnumberCharacters === false &&
+          haslowercaseCharacters === false &&
+           hasUpperCaseCharacters === false) {
+               alert(`Choose atleast one type of character`);
+               return;
+           }
+    //stores  user input
+    let passwordOptions = {
+        length:length,
+        hasSpecialCharacters:hasSpecialCharacters,
+        hasnumberCharacters:hasnumberCharacters,
+        haslowercaseCharacters:haslowercaseCharacters,
+        hasUpperCaseCharacters:hasUpperCaseCharacters
+    };
+    return passwordOptions;
+        
+};
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
